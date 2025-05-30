@@ -4,6 +4,7 @@ import { AppService } from './app.service';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { LoggingMiddleware } from 'src/common/middlewares';
+import { TokenModule } from 'src/app/token';
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import { LoggingMiddleware } from 'src/common/middlewares';
         charset: 'utf8mb4_unicode_ci',
       }),
     }),
+    TokenModule,
   ],
   controllers: [AppController],
   providers: [AppService],
