@@ -3,8 +3,11 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { LoggingMiddleware } from 'src/common/middlewares';
-import { TokenModule } from 'src/app/token';
+import { LoggingMiddleware } from '@/common/middlewares';
+import { TokenModule } from '@/app/token';
+import { UserModule } from '@/app/user';
+import { AuthModule } from '@/app/auth';
+import { PasswordModule } from '@/app/password';
 
 @Module({
   imports: [
@@ -27,6 +30,9 @@ import { TokenModule } from 'src/app/token';
       }),
     }),
     TokenModule,
+    UserModule,
+    AuthModule,
+    PasswordModule
   ],
   controllers: [AppController],
   providers: [AppService],

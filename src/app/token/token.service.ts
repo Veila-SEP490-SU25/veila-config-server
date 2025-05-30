@@ -1,8 +1,8 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
-import { TokenOptions, TokenPayload } from 'src/app/token/token.dto';
-import { User } from 'src/common/models';
+import { TokenOptions, TokenPayload } from '@/app/token/token.dto';
+import { User } from '@/common/models';
 
 @Injectable()
 export class TokenService {

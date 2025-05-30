@@ -1,4 +1,4 @@
-import { Audit } from "src/common/models/audit.model";
+import { Audit } from "@/common/models/audit.model";
 import { Column, Entity } from "typeorm";
 
 @Entity('user')
