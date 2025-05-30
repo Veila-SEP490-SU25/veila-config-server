@@ -7,6 +7,7 @@ import {
   ValidationPipe,
 } from '@nestjs/common';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import { HttpExceptionFilter } from 'src/common/filters';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
@@ -31,6 +32,7 @@ async function bootstrap() {
     maxAge: 86400,
   });
 
+  app.useGlobalFilters(new HttpExceptionFilter());
   app.setGlobalPrefix('api');
   app.useGlobalPipes(
     new ValidationPipe({
