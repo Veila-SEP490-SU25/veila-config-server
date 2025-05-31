@@ -27,6 +27,7 @@ async function bootstrap() {
       'Content-Type',
       'Range',
       'Authorization',
+      'X-Secret-Key'
     ],
     exposedHeaders: ['Content-Length', 'Content-Range', 'Content-Type'],
     maxAge: 86400,

@@ -9,7 +9,11 @@ export class Audit {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column({ type: 'varchar', unique: true })
+  @Column({
+    type: 'varchar',
+    unique: true,
+    default: () => new Date().getTime().toString(),
+  })
   code: string;
 
   @Column({ type: 'boolean', default: false })
