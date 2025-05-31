@@ -16,7 +16,7 @@ jobs:
       - name: Build Docker image
         run: docker build -t veila-config-server:latest .
 
-  deploy-demo:
+  deploy:
     name: Deploy Config Server
     needs: build
     runs-on: [veila]
@@ -40,7 +40,7 @@ jobs:
   cleanup:
     name: Cleanup
     runs-on: [veila]
-    needs: [build, deploy-demo, deploy-production]
+    needs: [build, deploy]
     steps:
       - name: Cleanup unused images
         run: |
