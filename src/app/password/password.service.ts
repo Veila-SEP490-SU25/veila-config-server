@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import * as bcrypt from 'bcrypt';
+import { randomBytes } from 'crypto';
 
 @Injectable()
 export class PasswordService {
@@ -22,5 +23,9 @@ export class PasswordService {
     hashedPassword: string,
   ): Promise<boolean> {
     return await bcrypt.compare(password, hashedPassword);
+  }
+
+  generateSecretKey(length: number = 32): string {
+    return randomBytes(length).toString('hex');
   }
 }
