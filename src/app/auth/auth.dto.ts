@@ -1,3 +1,4 @@
+import { IsPassword } from '@/common/validators';
 import { ApiProperty } from '@nestjs/swagger';
 import { IsNotEmpty } from 'class-validator';
 
@@ -8,6 +9,7 @@ export class LoginRequest {
 
   @ApiProperty()
   @IsNotEmpty()
+  @IsPassword()
   password: string;
 }
 
