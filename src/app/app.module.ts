@@ -8,6 +8,7 @@ import { TokenModule } from '@/app/token';
 import { UserModule } from '@/app/user';
 import { AuthModule } from '@/app/auth';
 import { PasswordModule } from '@/app/password';
+import { SeedModule } from '@/app/seed/seed.module';
 
 @Module({
   imports: [
@@ -32,7 +33,8 @@ import { PasswordModule } from '@/app/password';
     TokenModule,
     UserModule,
     AuthModule,
-    PasswordModule
+    PasswordModule,
+    SeedModule
   ],
   controllers: [AppController],
   providers: [AppService],

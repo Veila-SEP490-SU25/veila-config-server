@@ -12,7 +12,7 @@ export class Audit {
   @Column({ type: 'varchar', unique: true })
   code: string;
 
-  @Column({ type: 'boolean' })
+  @Column({ type: 'boolean', default: false })
   isDeleted: boolean;
 
   @CreateDateColumn()
