@@ -43,3 +43,9 @@ export class RegisterResponse {
   @ApiProperty()
   fullName?: string;
 }
+
+export class RefreshTokenRequest {
+  @ApiProperty()
+  @IsNotEmpty()
+  refreshToken: string;
+}

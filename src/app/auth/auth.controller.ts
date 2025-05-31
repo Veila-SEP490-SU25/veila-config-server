@@ -1,6 +1,7 @@
 import {
   LoginRequest,
   LoginResponse,
+  RefreshTokenRequest,
   RegisterRequest,
   RegisterResponse,
 } from '@/app/auth/auth.dto';
@@ -35,6 +36,16 @@ export class AuthController {
       item: response,
       message: 'Đăng ký thành công',
       statusCode: 201,
+    };
+  }
+
+  @Post('refresh')
+  async refresh(@Body() body: RefreshTokenRequest): Promise<ItemResponse<LoginResponse>> {
+    const response = await this.authService.refresh(body);
+    return {
+      item: response,
+      message: 'Làm mới token thành công',
+      statusCode: 200,
     };
   }
 }
