@@ -22,7 +22,7 @@ export class TokenService {
     const payload: TokenPayload = {
       id: user.id,
       username: user.username,
-      fullname: user.fullName,
+      fullName: user.fullName,
     };
 
     return await this.jwtService.signAsync(payload, { secret, expiresIn });
@@ -47,7 +47,7 @@ export class TokenService {
       return {
         id: payload.id,
         username: payload.username,
-        fullname: payload.fullname,
+        fullName: payload.fullName,
       };
     } catch (error) {
       throw new UnauthorizedException('Token không hợp lệ hoặc đã hết hạn.');

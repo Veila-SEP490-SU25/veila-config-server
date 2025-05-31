@@ -1,6 +1,6 @@
 import { IsPassword } from '@/common/validators';
 import { ApiProperty } from '@nestjs/swagger';
-import { IsNotEmpty } from 'class-validator';
+import { IsNotEmpty, IsOptional } from 'class-validator';
 
 export class LoginRequest {
   @ApiProperty()
@@ -19,4 +19,27 @@ export class LoginResponse {
 
   @ApiProperty()
   refreshToken: string;
+}
+
+export class RegisterRequest {
+  @ApiProperty()
+  @IsNotEmpty()
+  username: string;
+
+  @ApiProperty()
+  @IsNotEmpty()
+  @IsPassword()
+  password: string;
+
+  @ApiProperty()
+  @IsOptional()
+  fullName?: string;
+}
+
+export class RegisterResponse {
+  @ApiProperty()
+  username: string;
+
+  @ApiProperty()
+  fullName?: string;
 }

@@ -1,7 +1,7 @@
 export class TokenPayload {
   id: string;
   username: string;
-  fullname: string;
+  fullName: string;
 }
 
 export class TokenOptions {
