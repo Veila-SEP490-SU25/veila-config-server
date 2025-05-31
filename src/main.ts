@@ -8,6 +8,7 @@ import {
 } from '@nestjs/common';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { HttpExceptionFilter } from '@/common/filters';
+import { HttpStatusInterceptor } from '@/common/interceptors';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
@@ -27,7 +28,7 @@ async function bootstrap() {
       'Content-Type',
       'Range',
       'Authorization',
-      'X-Secret-Key'
+      'X-Secret-Key',
     ],
     exposedHeaders: ['Content-Length', 'Content-Range', 'Content-Type'],
     maxAge: 86400,
@@ -42,6 +43,7 @@ async function bootstrap() {
     }),
   );
   app.useGlobalInterceptors(new ClassSerializerInterceptor(app.get(Reflector)));
+  app.useGlobalInterceptors(new HttpStatusInterceptor());
 
   const documentConfig = new DocumentBuilder()
     .setTitle('Veila Configuration Server API')

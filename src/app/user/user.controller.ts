@@ -2,8 +2,8 @@ import { UpdatePasswordRequest } from '@/app/user/user.dto';
 import { UserService } from '@/app/user/user.service';
 import { UserId } from '@/common/decorators';
 import { AuthGuard } from '@/common/guards';
-import { ItemResponse } from '@/common/models';
-import { Body, Controller, Put, UseGuards } from '@nestjs/common';
+import { ItemResponse, User } from '@/common/models';
+import { Body, Controller, Get, NotFoundException, Put, UseGuards } from '@nestjs/common';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
 @Controller('user')
@@ -23,6 +23,17 @@ export class UserController {
       statusCode: 200,
       item: result,
       message: 'Đổi mật khẩu thành công.',
+    };
+  }
+
+  @Get('self')
+  async getSelf(@UserId() userId: string): Promise<ItemResponse<User>> {
+    const user = await this.userService.getById(userId);
+    if (!user) throw new NotFoundException('Người dùng không tồn tại.');
+    return {
+      statusCode: 200,
+      item: user,
+      message: 'Lấy thông tin người dùng thành công.',
     };
   }
 }

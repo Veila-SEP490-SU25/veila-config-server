@@ -1,5 +1,6 @@
 import { Audit } from "@/common/models/audit.model";
 import { Profile } from "@/common/models/profile.model";
+import { Exclude } from "class-transformer";
 import { Column, Entity, OneToMany } from "typeorm";
 
 @Entity('user')
@@ -8,6 +9,7 @@ export class User extends Audit{
   username: string;
 
   @Column({ type: 'varchar'})
+  @Exclude()
   password: string;
 
   @Column({ type: 'varchar', nullable: true })
