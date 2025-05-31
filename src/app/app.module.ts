@@ -8,8 +8,9 @@ import { TokenModule } from '@/app/token';
 import { UserModule } from '@/app/user';
 import { AuthModule } from '@/app/auth';
 import { PasswordModule } from '@/app/password';
-import { SeedModule } from '@/app/seed/seed.module';
-import { ProfileModule } from '@/app/profile/profile.module';
+import { SeedModule } from '@/app/seed';
+import { ProfileModule } from '@/app/profile';
+import { RecordModule } from '@/app/record';
 
 @Module({
   imports: [
@@ -36,7 +37,8 @@ import { ProfileModule } from '@/app/profile/profile.module';
     AuthModule,
     PasswordModule,
     SeedModule,
-    ProfileModule
+    ProfileModule,
+    RecordModule
   ],
   controllers: [AppController],
   providers: [AppService],

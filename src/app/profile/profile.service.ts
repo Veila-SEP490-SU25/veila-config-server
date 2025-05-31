@@ -94,4 +94,14 @@ export class ProfileService {
     await this.profileRepository.remove(profile);
     return true;
   }
+
+  async getProfileBySecret(secret: string): Promise<Profile> {
+    const profile = await this.profileRepository.findOne({
+      where: { secret },
+    })
+    if (!profile) {
+      throw new NotFoundException('Profile not found');
+    }
+    return profile;
+  }
 }
