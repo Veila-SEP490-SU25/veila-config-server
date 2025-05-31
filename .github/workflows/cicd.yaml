@@ -1,0 +1,48 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    name: Build Docker Image
+    runs-on: [veila]
+    outputs:
+      image_tag: latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build Docker image
+        run: docker build -t veila-config-server:latest .
+
+  deploy-demo:
+    name: Deploy Config Server
+    needs: build
+    runs-on: [veila]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Create .env file
+        run: echo "${{ secrets.ENV_PRODUCTION }}" > .env
+
+      - name: Run demo container from prebuilt image
+        run: |
+          docker stop veila-dev-be || true
+          docker rm veila-dev-be || true
+          docker run -d --name veila-dev-be \
+            --env-file .env \
+            -e PORT=1208 \
+            -p 1208:3000 \
+            veila-config-server:latest
+
+  cleanup:
+    name: Cleanup
+    runs-on: [veila]
+    needs: [build, deploy-demo, deploy-production]
+    steps:
+      - name: Cleanup unused images
+        run: |
+          docker image prune -f
+          docker system prune -f
