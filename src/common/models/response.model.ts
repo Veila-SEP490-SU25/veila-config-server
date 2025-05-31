@@ -20,9 +20,6 @@ export class ListResponse<T> {
   items: T[];
 
   @ApiProperty()
-  totalCount: number;
-
-  @ApiProperty()
   pageSize: number;
 
   @ApiProperty()

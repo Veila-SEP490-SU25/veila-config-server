@@ -6,3 +6,9 @@ export class CreateProfileRequest {
   @IsNotEmpty({ message: 'Tên hồ sơ không được để trống' })
   name: string;
 }
+
+export class UpdateProfileRequest {
+  @ApiProperty()
+  @IsNotEmpty({ message: 'Tên hồ sơ không được để trống' })
+  name: string;
+}

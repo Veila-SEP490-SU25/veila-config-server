@@ -9,6 +9,7 @@ import { UserModule } from '@/app/user';
 import { AuthModule } from '@/app/auth';
 import { PasswordModule } from '@/app/password';
 import { SeedModule } from '@/app/seed/seed.module';
+import { ProfileModule } from '@/app/profile/profile.module';
 
 @Module({
   imports: [
@@ -34,7 +35,8 @@ import { SeedModule } from '@/app/seed/seed.module';
     UserModule,
     AuthModule,
     PasswordModule,
-    SeedModule
+    SeedModule,
+    ProfileModule
   ],
   controllers: [AppController],
   providers: [AppService],
