@@ -29,9 +29,9 @@ jobs:
 
       - name: Run demo container from prebuilt image
         run: |
-          docker stop veila-dev-be || true
-          docker rm veila-dev-be || true
-          docker run -d --name veila-dev-be \
+          docker stop veila-config-server || true
+          docker rm veila-config-server || true
+          docker run -d --name veila-config-server \
             --env-file .env \
             -e PORT=1208 \
             -p 1208:3000 \
