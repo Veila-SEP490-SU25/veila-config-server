@@ -61,7 +61,7 @@ export class ProfileController {
   @Post()
   async createProfile(
     @UserId() userId: string,
-    body: CreateProfileRequest,
+    @Body() body: CreateProfileRequest,
   ): Promise<ItemResponse<Profile>> {
     const profile = await this.profileService.createProfile(userId, body);
     return {
