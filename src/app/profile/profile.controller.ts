@@ -7,6 +7,7 @@ import {
   Body,
   Controller,
   DefaultValuePipe,
+  Delete,
   Get,
   Param,
   ParseIntPipe,
@@ -115,6 +116,19 @@ export class ProfileController {
       statusCode: 200,
       message: 'Lấy thông tin profile thành công',
       item: profile,
+    };
+  }
+
+  @Delete(':profileId')
+  async deleteProfile(
+    @UserId() userId: string,
+    @Param('profileId') profileId: string,
+  ): Promise<ItemResponse<boolean>> {
+    const result = await this.profileService.deleteProfile(userId, profileId);
+    return {
+      statusCode: 200,
+      message: 'Xoá profile thành công',
+      item: result,
     };
   }
 }
