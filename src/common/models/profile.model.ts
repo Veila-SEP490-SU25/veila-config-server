@@ -1,6 +1,7 @@
 import { Audit } from '@/common/models/audit.model';
+import { Record } from '@/common/models/record.model';
 import { User } from '@/common/models/user.model';
-import { Column, Entity, ManyToOne } from 'typeorm';
+import { Column, Entity, ManyToOne, OneToMany } from 'typeorm';
 
 @Entity('profile')
 export class Profile extends Audit {
@@ -18,4 +19,7 @@ export class Profile extends Audit {
     onUpdate: 'CASCADE',
   })
   user: User;
+
+  @OneToMany(() => Record, (record) => record.profile)
+  records: Record[];
 }
