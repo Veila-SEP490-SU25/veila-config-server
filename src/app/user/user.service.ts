@@ -25,10 +25,7 @@ export class UserService {
     return await this.userRepository.save(newUser);
   }
 
-  async changePassword(
-    userId: string,
-    body: UpdatePasswordRequest,
-  ): Promise<boolean> {
+  async changePassword(userId: string, body: UpdatePasswordRequest): Promise<boolean> {
     const user = await this.getById(userId);
     if (!user) {
       throw new NotFoundException('Người dùng không tồn tại.');
@@ -47,9 +44,7 @@ export class UserService {
     if (isNewPasswordSameAsOld) {
       throw new BadRequestException('Mật khẩu mới không được trùng với mật khẩu cũ.');
     }
-    const newHashedPassword = await this.passwordService.hashPassword(
-      body.newPassword,
-    );
+    const newHashedPassword = await this.passwordService.hashPassword(body.newPassword);
     user.password = newHashedPassword;
     await this.userRepository.save(user);
     return true;

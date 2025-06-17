@@ -8,10 +8,10 @@ export class Profile extends Audit {
   @Column({ type: 'varchar' })
   name: string;
 
-  @Column({type: 'varchar', nullable: false})
+  @Column({ type: 'varchar', nullable: false })
   secret: string;
 
-  @Column({ type: 'varchar', length: 36, nullable: false})
+  @Column({ type: 'varchar', length: 36, nullable: false })
   userId: string;
 
   @ManyToOne(() => User, (user) => user.profiles, {

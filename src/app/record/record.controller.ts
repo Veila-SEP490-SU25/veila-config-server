@@ -22,9 +22,7 @@ export class RecordController {
   constructor(private readonly recordService: RecordService) {}
 
   @Get()
-  async getRecordsByProfileSecret(
-    @Sercret() secret: string,
-  ): Promise<ListResponse<Record>> {
+  async getRecordsByProfileSecret(@Sercret() secret: string): Promise<ListResponse<Record>> {
     const records = await this.recordService.getRecordsByProfileSecret(secret);
     return {
       statusCode: 200,

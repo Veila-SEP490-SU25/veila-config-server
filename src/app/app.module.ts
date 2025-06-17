@@ -38,13 +38,13 @@ import { RecordModule } from '@/app/record';
     PasswordModule,
     SeedModule,
     ProfileModule,
-    RecordModule
+    RecordModule,
   ],
   controllers: [AppController],
   providers: [AppService],
 })
 export class AppModule {
-  configure(consumer: MiddlewareConsumer){
+  configure(consumer: MiddlewareConsumer) {
     consumer.apply(LoggingMiddleware).forRoutes('');
   }
 }

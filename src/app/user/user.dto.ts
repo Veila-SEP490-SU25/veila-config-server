@@ -1,5 +1,5 @@
-import { IsPassword } from "@/common/validators";
-import { ApiProperty } from "@nestjs/swagger";
+import { IsPassword } from '@/common/validators';
+import { ApiProperty } from '@nestjs/swagger';
 
 export class UpdatePasswordRequest {
   @ApiProperty()

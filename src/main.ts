@@ -1,11 +1,7 @@
 process.env.TZ = 'Asia/Ho_Chi_Minh'; // Set timezone to Vietnam
 import { NestFactory, Reflector } from '@nestjs/core';
 import { AppModule } from './app/app.module';
-import {
-  ClassSerializerInterceptor,
-  Logger,
-  ValidationPipe,
-} from '@nestjs/common';
+import { ClassSerializerInterceptor, Logger, ValidationPipe } from '@nestjs/common';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { HttpExceptionFilter } from '@/common/filters';
 import { HttpStatusInterceptor } from '@/common/interceptors';
@@ -68,10 +64,7 @@ async function bootstrap() {
 
   await app.listen(port, host).then(() => {
     Logger.log(`Server running on http://${host}:${port}`, 'Bootstrap');
-    Logger.log(
-      `Swagger running on http://${host}:${port}/swagger`,
-      'Bootstrap',
-    );
+    Logger.log(`Swagger running on http://${host}:${port}/swagger`, 'Bootstrap');
   });
 }
 bootstrap();

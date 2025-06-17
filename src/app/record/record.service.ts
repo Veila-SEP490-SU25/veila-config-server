@@ -1,14 +1,7 @@
 import { ProfileService } from '@/app/profile/profile.service';
-import {
-  CreateRecordRequest,
-  UpdateRecordRequest,
-} from '@/app/record/record.dto';
+import { CreateRecordRequest, UpdateRecordRequest } from '@/app/record/record.dto';
 import { Record } from '@/common/models';
-import {
-  BadRequestException,
-  Injectable,
-  NotFoundException,
-} from '@nestjs/common';
+import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
@@ -29,10 +22,7 @@ export class RecordService {
     return records;
   }
 
-  async createRecord(
-    secret: string,
-    body: CreateRecordRequest,
-  ): Promise<Record> {
+  async createRecord(secret: string, body: CreateRecordRequest): Promise<Record> {
     const profile = await this.profileService.getProfileBySecret(secret);
     const existingRecord = await this.recordRepository.findOne({
       where: { key: body.key, profileId: profile.id },
@@ -59,10 +49,7 @@ export class RecordService {
     return await this.recordRepository.remove(record);
   }
 
-  async updateRecord(
-    secret: string,
-    body: UpdateRecordRequest,
-  ): Promise<Record> {
+  async updateRecord(secret: string, body: UpdateRecordRequest): Promise<Record> {
     const profile = await this.profileService.getProfileBySecret(secret);
     const record = await this.recordRepository.findOne({
       where: { key: body.key, profileId: profile.id },

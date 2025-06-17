@@ -16,9 +16,7 @@ export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
   @Post('login')
-  async login(
-    @Body() body: LoginRequest,
-  ): Promise<ItemResponse<LoginResponse>> {
+  async login(@Body() body: LoginRequest): Promise<ItemResponse<LoginResponse>> {
     const response = await this.authService.login(body);
     return {
       item: response,
@@ -28,9 +26,7 @@ export class AuthController {
   }
 
   @Post('register')
-  async register(
-    @Body() body: RegisterRequest,
-  ): Promise<ItemResponse<RegisterResponse>> {
+  async register(@Body() body: RegisterRequest): Promise<ItemResponse<RegisterResponse>> {
     const response = await this.authService.register(body);
     return {
       item: response,

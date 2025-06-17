@@ -1,8 +1,5 @@
 import { PasswordService } from '@/app/password';
-import {
-  CreateProfileRequest,
-  UpdateProfileRequest,
-} from '@/app/profile/profile.dto';
+import { CreateProfileRequest, UpdateProfileRequest } from '@/app/profile/profile.dto';
 import { Profile } from '@/common/models';
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -33,10 +30,7 @@ export class ProfileService {
     return [profiles, totalCount, totalPages, hasNextPage, hasPreviousPage];
   }
 
-  async createProfile(
-    userId: string,
-    body: CreateProfileRequest,
-  ): Promise<Profile> {
+  async createProfile(userId: string, body: CreateProfileRequest): Promise<Profile> {
     const profile = this.profileRepository.create({
       userId,
       name: body.name,
@@ -45,10 +39,7 @@ export class ProfileService {
     return await this.profileRepository.save(profile);
   }
 
-  async changeProfileSecret(
-    userId: string,
-    profileId: string,
-  ): Promise<Profile> {
+  async changeProfileSecret(userId: string, profileId: string): Promise<Profile> {
     const profile = await this.profileRepository.findOne({
       where: { id: profileId, userId },
     });
@@ -98,7 +89,7 @@ export class ProfileService {
   async getProfileBySecret(secret: string): Promise<Profile> {
     const profile = await this.profileRepository.findOne({
       where: { secret },
-    })
+    });
     if (!profile) {
       throw new NotFoundException('Profile not found');
     }

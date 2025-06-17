@@ -78,11 +78,7 @@ export class ProfileController {
     @Param('profileId') profileId: string,
     @Body() body: CreateProfileRequest,
   ): Promise<ItemResponse<Profile>> {
-    const updatedProfile = await this.profileService.updateProfileName(
-      userId,
-      profileId,
-      body,
-    );
+    const updatedProfile = await this.profileService.updateProfileName(userId, profileId, body);
     return {
       statusCode: 200,
       message: 'Cập nhật tên profile thành công',
@@ -95,10 +91,7 @@ export class ProfileController {
     @UserId() userId: string,
     @Param('profileId') profileId: string,
   ): Promise<ItemResponse<Profile>> {
-    const updatedProfile = await this.profileService.changeProfileSecret(
-      userId,
-      profileId,
-    );
+    const updatedProfile = await this.profileService.changeProfileSecret(userId, profileId);
     return {
       statusCode: 200,
       message: 'Đổi secret profile thành công',

@@ -1,5 +1,5 @@
-import { ApiProperty } from "@nestjs/swagger";
-import { IsNotEmpty } from "class-validator";
+import { ApiProperty } from '@nestjs/swagger';
+import { IsNotEmpty } from 'class-validator';
 
 export class CreateRecordRequest {
   @ApiProperty()
@@ -21,7 +21,7 @@ export class UpdateRecordRequest {
   value: string;
 }
 
-export class DeleteRecordRequest{
+export class DeleteRecordRequest {
   @ApiProperty()
   @IsNotEmpty({ message: 'Tên bản ghi không được để trống' })
   key: string;

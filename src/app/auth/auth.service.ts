@@ -1,8 +1,4 @@
-import {
-  BadRequestException,
-  Injectable,
-  NotFoundException,
-} from '@nestjs/common';
+import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { TokenService } from '@/app/token';
 import { UserService } from '@/app/user';
 import {
@@ -50,9 +46,7 @@ export class AuthService {
     if (existingUser) {
       throw new BadRequestException('Tài khoản đã tồn tại.');
     }
-    const hashedPassword = await this.passwordService.hashPassword(
-      body.password,
-    );
+    const hashedPassword = await this.passwordService.hashPassword(body.password);
     const newUser = await this.userService.create({
       username: body.username,
       password: hashedPassword,

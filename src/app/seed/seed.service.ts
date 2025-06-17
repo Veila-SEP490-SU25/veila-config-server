@@ -17,9 +17,7 @@ export class SeedService implements OnModuleInit {
     const adminPassword = this.config.get<string>('ADMIN_PASSWORD');
 
     if (!adminUsername || !adminPassword) {
-      console.warn(
-        'Admin credentials are not set in the environment variables.',
-      );
+      console.warn('Admin credentials are not set in the environment variables.');
       return;
     }
 
@@ -29,8 +27,7 @@ export class SeedService implements OnModuleInit {
       return;
     }
 
-    const hashedPassword =
-      await this.passwordService.hashPassword(adminPassword);
+    const hashedPassword = await this.passwordService.hashPassword(adminPassword);
     await this.userService
       .create({
         username: adminUsername,
