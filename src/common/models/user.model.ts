@@ -1,5 +1,5 @@
-import { Audit } from '@/common/models/audit.model';
-import { Profile } from '@/common/models/profile.model';
+import { Audit } from './audit.model';
+import { Profile } from './profile.model';
 import { Exclude } from 'class-transformer';
 import { Column, Entity, OneToMany } from 'typeorm';
 

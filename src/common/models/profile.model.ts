@@ -1,6 +1,6 @@
-import { Audit } from '@/common/models/audit.model';
-import { Record } from '@/common/models/record.model';
-import { User } from '@/common/models/user.model';
+import { Audit } from './audit.model';
+import { Record } from './record.model';
+import { User } from './user.model';
 import { Column, Entity, ManyToOne, OneToMany } from 'typeorm';
 
 @Entity('profile')

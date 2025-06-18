@@ -1,7 +1,7 @@
 import { Matches, MinLength, ValidatorOptions } from 'class-validator';
 
 export function IsPassword(validatorOptions?: ValidatorOptions) {
-  return function (object: Object, propertyName: string) {
+  return function (object: object, propertyName: string) {
     MinLength(8, {
       message: 'Mật khẩu phải có ít nhất 8 ký tự.',
     })(object, propertyName);

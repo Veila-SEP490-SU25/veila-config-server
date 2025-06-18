@@ -20,7 +20,7 @@ import { RecordModule } from '@/app/record';
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
-      useFactory: async (config: ConfigService) => ({
+      useFactory: (config: ConfigService) => ({
         type: 'mysql',
         host: config.get<string>('DB_HOST'),
         port: config.get<number>('DB_PORT'),
@@ -28,7 +28,8 @@ import { RecordModule } from '@/app/record';
         password: config.get<string>('DB_PASSWORD'),
         database: config.get<string>('DB_NAME'),
         entities: [__dirname + '/../**/*.model{.ts,.js}'],
-        synchronize: true,
+        migrations: [__dirname + '/../**/migrations/*{.ts,.js}'],
+        synchronize: false,
         charset: 'utf8mb4_unicode_ci',
       }),
     }),
