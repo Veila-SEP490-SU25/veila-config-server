@@ -12,7 +12,7 @@ export class Audit {
   @Column({
     type: 'varchar',
     unique: true,
-    default: () => new Date().getTime().toString(),
+    default: new Date().getTime().toString(),
   })
   code: string;
 
