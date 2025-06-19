@@ -11,7 +11,7 @@ export class Audit {
 
   @Column({
     type: 'varchar',
-    unique: true,
+    unique: false,
     default: Date.now().toString(36) + Math.random().toString(36).substring(2, 15),
   })
   code: string;
