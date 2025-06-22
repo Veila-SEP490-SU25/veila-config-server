@@ -4,7 +4,7 @@ import {
   UpdateRecordRequest,
 } from '@/app/record/record.dto';
 import { RecordService } from '@/app/record/record.service';
-import { Sercret } from '@/common/decorators';
+import { Secret } from '@/common/decorators';
 import { ItemResponse, ListResponse, Record } from '@/common/models';
 import { Body, Controller, Delete, Get, Post, Put } from '@nestjs/common';
 import { ApiHeaders, ApiTags } from '@nestjs/swagger';
@@ -23,7 +23,7 @@ export class RecordController {
 
   @Get()
   async getRecordsByProfileSecret(
-    @Sercret() secret: string,
+    @Secret() secret: string,
   ): Promise<ListResponse<Record>> {
     const records = await this.recordService.getRecordsByProfileSecret(secret);
     return {
@@ -39,9 +39,14 @@ export class RecordController {
     };
   }
 
+  @Get('env')
+  async getEnvText(@Secret() secret: string): Promise<string> {
+    return await this.recordService.getRecordEnvText(secret);
+  }
+
   @Post()
   async createRecord(
-    @Sercret() secret: string,
+    @Secret() secret: string,
     @Body() body: CreateRecordRequest,
   ): Promise<ItemResponse<Record>> {
     const record = await this.recordService.createRecord(secret, body);
@@ -54,7 +59,7 @@ export class RecordController {
 
   @Put()
   async updateRecord(
-    @Sercret() secret: string,
+    @Secret() secret: string,
     @Body() body: UpdateRecordRequest,
   ): Promise<ItemResponse<Record>> {
     const record = await this.recordService.updateRecord(secret, body);
@@ -67,7 +72,7 @@ export class RecordController {
 
   @Delete()
   async deleteRecord(
-    @Sercret() secret: string,
+    @Secret() secret: string,
     @Body() body: DeleteRecordRequest,
   ): Promise<ItemResponse<Record>> {
     const record = await this.recordService.deleteRecord(secret, body.key);

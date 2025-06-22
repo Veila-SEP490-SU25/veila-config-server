@@ -1,6 +1,6 @@
 import { createParamDecorator, ExecutionContext, UnauthorizedException } from "@nestjs/common";
 
-export const Sercret = createParamDecorator((_, ctx: ExecutionContext) => {
+export const Secret = createParamDecorator((_, ctx: ExecutionContext) => {
   const request = ctx.switchToHttp().getRequest();
   const secret = request.headers["x-secret-key"] || request.headers["X-Secret-Key"];
   if (!secret) {

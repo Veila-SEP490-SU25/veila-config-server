@@ -74,4 +74,14 @@ export class RecordService {
     record.value = body.value;
     return await this.recordRepository.save(record);
   }
+
+  async getRecordEnvText(secret: string): Promise<string>{
+    const records = await this.getRecordsByProfileSecret(secret);
+    if (records.length === 0) {
+      return '';
+    }
+    return records
+      .map((record) => `${record.key}=${record.value}`)
+      .join('\n');
+  }
 }
