@@ -1,4 +1,5 @@
 import {
+  BeforeInsert,
   Column,
   CreateDateColumn,
   PrimaryGeneratedColumn,
@@ -11,8 +12,7 @@ export class Audit {
 
   @Column({
     type: 'varchar',
-    unique: false,
-    default: Date.now().toString(36) + Math.random().toString(36).substring(2, 15),
+    unique: true
   })
   code: string;
 
@@ -24,4 +24,9 @@ export class Audit {
 
   @UpdateDateColumn()
   updatedAt: Date;
+
+  @BeforeInsert()
+  generateCode() {
+    this.code = Date.now().toString(36) + Math.random().toString(36).substring(2);
+  }
 }
