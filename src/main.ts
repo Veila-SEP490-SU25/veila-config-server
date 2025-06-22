@@ -29,6 +29,8 @@ async function bootstrap() {
       'Range',
       'Authorization',
       'X-Secret-Key',
+      'Access-Control-Allow-Origin',
+      'Access-Control-Allow-Methods',
     ],
     exposedHeaders: ['Content-Length', 'Content-Range', 'Content-Type'],
     maxAge: 86400,
