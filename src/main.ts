@@ -28,11 +28,15 @@ async function bootstrap() {
       'Content-Type',
       'Range',
       'Authorization',
-      'X-Secret-Key',
+      'X-Secret-Key'
+    ],
+    exposedHeaders: [
+      'Content-Length',
+      'Content-Range',
+      'Content-Type',
       'Access-Control-Allow-Origin',
       'Access-Control-Allow-Methods',
     ],
-    exposedHeaders: ['Content-Length', 'Content-Range', 'Content-Type'],
     maxAge: 86400,
   });
 
