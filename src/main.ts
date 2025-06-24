@@ -51,23 +51,23 @@ async function bootstrap() {
   app.useGlobalInterceptors(new ClassSerializerInterceptor(app.get(Reflector)));
   app.useGlobalInterceptors(new HttpStatusInterceptor());
 
-  const documentConfig = new DocumentBuilder()
-    .setTitle('Veila Configuration Server API')
-    .setDescription('API documentation for Veila Configuration Server')
-    .setVersion('1.0')
-    .addBearerAuth()
-    .build();
-  const document = SwaggerModule.createDocument(app, documentConfig);
-  SwaggerModule.setup('/swagger', app, document, {
-    swaggerOptions: {
-      defaultModelsExpandDepth: -1,
-      filter: true,
-      showExtensions: true,
-      showCommonExtensions: true,
-      tagsSorter: 'alpha',
-      operationsSorter: 'alpha',
-    },
-  });
+  // const documentConfig = new DocumentBuilder()
+  //   .setTitle('Veila Configuration Server API')
+  //   .setDescription('API documentation for Veila Configuration Server')
+  //   .setVersion('1.0')
+  //   .addBearerAuth()
+  //   .build();
+  // const document = SwaggerModule.createDocument(app, documentConfig);
+  // SwaggerModule.setup('/swagger', app, document, {
+  //   swaggerOptions: {
+  //     defaultModelsExpandDepth: -1,
+  //     filter: true,
+  //     showExtensions: true,
+  //     showCommonExtensions: true,
+  //     tagsSorter: 'alpha',
+  //     operationsSorter: 'alpha',
+  //   },
+  // });
 
   const host = process.env.LISTEN_HOST || '0.0.0.0';
   const port = process.env.LISTEN_PORT || 3000;
